@@ -11,6 +11,7 @@ geo_co <- tt_import_geo_county() %>% mutate(geo.id = as.numeric(fipsnum))%>% st_
 geo_isd <- tt_import_geo_isd() %>% mutate(geo.id = as.numeric(dcode)) %>% st_make_valid()
 geo_town <- tt_import_geo_township() %>% mutate(geo.id = as.numeric(FIPSNUM))%>% st_make_valid()
 
+
 names_cc <- 
   readxl::read_excel("Maps/MI-Community-College-Districts/240404_community-college-district-description.xlsx") %>% 
   rename(opeid = OPEID,
@@ -227,8 +228,8 @@ cc_districts <-
 
 
 # write data to a geo package 
-st_write(cc_districts, "Maps/MI-Community-College-Districts/cc_map.gpkg")
-st_write(cc_districts, "Maps/Clean_Maps/geo_cc.gpkg")
+st_write(cc_districts, "Maps/MI-Community-College-Districts/cc_map.gpkg", append = FALSE, delete_layer = TRUE)
+st_write(cc_districts, "Maps/Clean_Maps/geo_cc.gpkg", append = FALSE, delete_layer = TRUE)
 
 
 
