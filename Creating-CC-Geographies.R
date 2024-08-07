@@ -55,7 +55,9 @@ clean_geo <- function(geo.data, opeid){
 cc_alpena <- 
   choose_geo(geo_co, 7) %>% 
   st_difference(choose_geo(geo_dist, 60020)) %>% 
+  st_union(choose_geo(geo_town, 66340)) %>% 
   clean_geo(223700)
+
 
 cc_baydenoc <- 
   choose_geo(geo_co, 41) %>% 
@@ -226,6 +228,8 @@ cc_districts <-
 
 # write data to a geo package 
 st_write(cc_districts, "Maps/MI-Community-College-Districts/cc_map.gpkg")
+st_write(cc_districts, "Maps/Clean_Maps/geo_cc.gpkg")
+
 
 
 # create SVG map
